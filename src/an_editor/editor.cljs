@@ -1,5 +1,4 @@
-(ns an_editor.editor
-  (:require [an_editor.text_line :as text_line]))
+(ns an_editor.editor)
 
 (defprotocol IEditor
   "Monospace Text Editor Protocol"
@@ -10,11 +9,3 @@
   (enter [this cursor] "Insert newline at cursor position")
   (toEndOfLine [this cursor] "Move cursor to the end of current line where cursor is located")
   (toStartOfLine [this cursor] "Move cursor to the start of current line where cursor is located"))
-
-(deftype Editor [textLines]
-  IEditor
-  (bind [this dom]
-    (reduce
-      (fn [text textLineNode] (do (-> text (.appendChild textLineNode)) text))
-      dom
-      textLines)))
