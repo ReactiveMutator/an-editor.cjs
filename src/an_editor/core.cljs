@@ -8,14 +8,16 @@
 (enable-console-print!)
 
 (def line-atoms
+  "Text line atoms usable for index access and listening to"
   (map event/atomize (text/enumerate ["W\n" "b\n" "cde\n"])))
 
 (def text
-  (event/textify (map event/merge-into-line line-atoms)))
+  "Text usable for attaching into DOM"
+  (event/textify (map event/join-into-line line-atoms)))
 
 (def body-atom (atom {:dom js/document.body}))
 
-(event/append-listenable body-atom text)
+(event/append-atomic body-atom text)
 
 (event/listeners text
   (fn [key character old-value new-value]

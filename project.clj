@@ -6,6 +6,9 @@
                  [org.clojure/clojurescript "1.9.946"]]
   :plugins [[lein-cljsbuild "1.1.7"]
             [lein-codox "0.10.3"]]
+  :codox {:language :clojurescript
+          :source-paths ["src"]
+          :output-path "codox"}
   :cljsbuild {
     :builds [{
         :source-paths ["src"]
